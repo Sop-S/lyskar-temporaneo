@@ -18,11 +18,12 @@ extends Spatial
 
 onready var player_pack = preload(\"res://instances/player.tscn\")
 onready var cam_pack    = preload(\"res://instances/cam.tscn\")
+onready var mouse_raycaster = load(\"res://script/mouse_raycaster.gd\")
+
 var player
 var cam
-var camera: Camera
+var raycaster
 
-var ray : RayCast
 #--- var temporanee
 var angolo_camera_globale
 
@@ -33,15 +34,8 @@ func initialize_game():
 	player = player_pack.instance()
 	cam    = cam_pack.instance()
 	
-	camera = player.get_node(\"cam_follow/cam\")
+	raycaster = mouse_raycaster.new(player.get_node(\"cam_follow/cam\"))
 	
-	ray = RayCast.new()
-	ray.set_name(\"MouseClick_Ray\")
-	camera.add_child(ray)
-	ray.clear_exceptions()
-	#ray.set_collision_mask(COLLISIONMASK)
-	ray.set_enabled(true)
-
 	add_child(player)
 	player.global_transform.origin = $spawn.global_transform.origin
 	
@@ -56,26 +50,10 @@ func _process(delta):
 	pass
 
 
-const ray_length: int = 1000
-
 func _physics_process(delta):
-#	
-#	# use global coordinates, not local to node
-#	var fromVector: Vector3 = Vector3(0,0,0)
-#	var toVector: Vector3 = Vector3(0,0,0)
-	
 	if Input.is_action_just_pressed(\"ClickAction\"):
-		var mouse: Vector2  = get_viewport().get_mouse_position()
-		var fromVector: Vector3 = camera.project_ray_origin(mouse)
-		var toVector: Vector3 = fromVector + camera.project_ray_normal(mouse) * ray_length
-
-		var space_state: PhysicsDirectSpaceState = get_world().direct_space_state
-		var result: Dictionary = space_state.intersect_ray(fromVector, toVector)
-		
+		var result: Dictionary = raycaster.cast_ray(get_viewport().get_mouse_position(), get_world())
 		print(result)
-	
-	
-	
 	
 	
 	
