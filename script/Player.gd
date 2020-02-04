@@ -7,13 +7,13 @@
 
 extends KinematicBody
 
-var speed              : float = 100.0
-var steering_dampening : float = 20.0 #percentage
+var speed              : float = 600.0
+var steering_dampening : float = 2 #percentage
 
 var direction   : Vector3
 var move_vector : Vector3
 
-const GRAVITY        = 100
+const GRAVITY        = 700
 const MAX_VERT_SPEED = 500
 
 var fl_is_on_floor = false
@@ -30,25 +30,34 @@ func _process(delta):
 	#--- adjust direction to camera angle
 	var cam_global_angle = $cam_follow/cam.global_transform.basis.get_euler().y
 	
-	direction = direction.rotated( Vector3(0,1,0) , cam_global_angle) * speed
+	direction = direction.rotated( Vector3(0,1,0) , cam_global_angle)
 	
 	#--- rotate the player body facing the direction
-	if move_vector.length() > 0.2:
-		rotation.y = Vector2(direction.x , -direction.z).angle() - PI/2
+	if move_vector.length() > 0.0:
+		rotation.y = Vector2(move_vector.x , -move_vector.z).angle() - PI/2
 	
 
 
 func _physics_process(delta):
 	move_vector = Vector3()
+	
+	#--- steering behaviour
+	var steering = (direction - move_vector) * speed * (steering_dampening / 100.0)
+	move_vector += steering
+	
 	#--- gravity
 	fl_is_on_floor = is_on_floor()
 	if not is_on_floor():
-		move_vector.y -= GRAVITY
+		move_vector.y -= GRAVITY * delta
 		move_vector.y = min(MAX_VERT_SPEED , move_vector.y)
 	
-	#--- steering behaviour
-	var steering = (direction - move_vector) * (steering_dampening / 100.0)
+	move_vector.x = clamp(move_vector.x , -MAX_VERT_SPEED , MAX_VERT_SPEED)
+	move_vector.z = clamp(move_vector.z , -MAX_VERT_SPEED , MAX_VERT_SPEED)
 	
-	move_vector += steering
-	move_vector = move_and_slide(move_vector, Vector3(0,1,0), true, 4, deg2rad(45), false)
+	move_vector = move_and_slide(move_vector, Vector3(0,1,0), true, 4, deg2rad(45))
+
+
+
+
+
 
