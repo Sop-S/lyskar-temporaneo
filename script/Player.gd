@@ -13,8 +13,9 @@ var steering_dampening : float = 2 #percentage
 var direction   : Vector3
 var move_vector : Vector3
 
-const GRAVITY        = 700
-const MAX_VERT_SPEED = 500
+const JUMP           = 10
+const GRAVITY        = 1200
+const MAX_VERT_SPEED = 1500
 
 var fl_is_on_floor = false
 
@@ -24,7 +25,7 @@ func _ready():
 func _process(delta):
 	direction = Vector3(                                                          \
 	Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"), \
-	0,                                                                            \
+	Input.get_action_strength("ui_select") * JUMP * int(is_on_floor()),                                                                            \
 	Input.get_action_strength("ui_down")  - Input.get_action_strength("ui_up"))
 	
 	#--- adjust direction to camera angle

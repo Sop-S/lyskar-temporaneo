@@ -9,3 +9,5 @@ script = ExtResource( 1 )
 transform = Transform( 1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 4.75857, 10 )
 current = true
 fov = 75.9375
+near = 0.02
+far = 1000.0

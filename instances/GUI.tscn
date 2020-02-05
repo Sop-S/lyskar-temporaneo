@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://script/GUI.gd" type="Script" id=1]
+[ext_resource path="res://themes/small_theme.tres" type="Theme" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+func _pressed():
+	OS.window_fullscreen = !OS.window_fullscreen
+	release_focus()
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Button
+
+func _pressed():
+	get_tree().quit()
+"
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="cont" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fps" type="Label" parent="cont"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -212.0
+margin_top = 22.0
+margin_right = -11.0
+margin_bottom = 44.0
+text = "60"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbox" type="VBoxContainer" parent="cont"]
+margin_left = 16.3067
+margin_top = 15.0523
+margin_right = 112.307
+margin_bottom = 64.0523
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fullscreen" type="Button" parent="cont/vbox"]
+margin_right = 96.0
+margin_bottom = 23.0
+text = "fullsecreen"
+script = SubResource( 1 )
+
+[node name="quit" type="Button" parent="cont/vbox"]
+margin_top = 27.0
+margin_right = 96.0
+margin_bottom = 50.0
+text = "esci"
+script = SubResource( 2 )
+
+[node name="test" type="Label" parent="cont/vbox"]
+margin_top = 54.0
+margin_right = 96.0
+margin_bottom = 76.0
+text = "test"
+__meta__ = {
+"_edit_use_anchors_": false
+}

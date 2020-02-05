@@ -10,4 +10,4 @@ func _ready():
 func _process(delta):
 	$fps.text = str( Engine.get_frames_per_second() , " fps" )
 	
-	$test.text = str( fl_player_is_on_floor )
+	$vbox/test.text = str( fl_player_is_on_floor )

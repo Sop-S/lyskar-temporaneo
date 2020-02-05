@@ -14,7 +14,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$start.connect("pressed",self,"start_game")
+	$vbox/start.connect("pressed",self,"start_game")
 
 
 func start_game():
