@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/vase.gltf-b1abb4b47241c4796608f790167596a6.scn"
+path="res://.import/terrain_tiles.dae-2daac47a38f8ab18284196f24e311412.scn"
 
 [deps]
 
-source_file="res://assetts/vase.gltf"
-dest_files=[ "res://.import/vase.gltf-b1abb4b47241c4796608f790167596a6.scn" ]
+source_file="res://assetts/terrain_tiles/terrain_tiles.dae"
+dest_files=[ "res://.import/terrain_tiles.dae-2daac47a38f8ab18284196f24e311412.scn" ]
 
 [params]
 
