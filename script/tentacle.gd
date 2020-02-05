@@ -45,8 +45,10 @@ func set_tentacle_points():
 	$section.mesh = $section.mesh.duplicate()
 	
 	#--- adjust section to length
-	$section.mesh.radius = segment_length/2
-	$section.mesh.height = segment_length
+	$section.mesh.radius = segment_length/1.0       # sphere shape
+	$section.mesh.height = $section.mesh.radius*2 # sphere shape
+#	$section.mesh.radius = segment_length/4       # capsule shape
+#	$section.mesh.mid_height = segment_length/2   # capsule shape
 	
 	#--- create sections for each pair of points
 	sections.append($section)
@@ -66,9 +68,11 @@ func _physics_process(delta):
 	points = ik.reach_target(reach_point)
 	
 	for i in range(points.size()-1):
-		sections[i].transform.origin = points[i]
-		# set segment rotation
-#		sections[i].rotation = points[i].direction_to(points[i+1])
+		sections[i].transform.origin = points[i] + (points[i+1] - points[i])/2
+		
+		# set segment rotation TODO
+#		sections[i].rotate = Vector3(1,0,0).direction_to(points[i+1] - points[i])
+#		sections[i].transform = sections[i].transform.looking_at(points[i] + points[i+1],Vector3(0,0,1))
 #		sections[i].rotation.y = points[i].angle_to(points[i+1])
 #		sections[i].rotation.z = points[i].angle_to(points[i+1])
 		
