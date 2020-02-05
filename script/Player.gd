@@ -12,11 +12,11 @@ var direction   : Vector3
 var move_vector : Vector3
 
 #--- player stats
-var accelleration  : float = 60
-var friction       : float = 20
+var accelleration  : float = 100
+var friction       : float = 180
 var jump_acc       : float = 20
-var gravity_acc    : float = 150
-var max_speed      : int   = 60
+var gravity_acc    : float = 190
+var max_speed      : int   = 15
 var max_fall_speed : int   = 80
 
 var fl_is_on_floor = false
