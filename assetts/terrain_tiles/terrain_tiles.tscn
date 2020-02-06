@@ -35,12 +35,12 @@ surfaces/0 = {
 "vertex_count": 46
 }
 
-[sub_resource type="ConcavePolygonShape" id=17]
-data = PoolVector3Array( -2, 0, 2, 2, 0, 2, 2, 0, -2, 2, 1, -2, 2, 3, 2, -2, 3, 2, -2, 0, 2, -2, 0, -2, -2, 1, -2, 2, 0, 2, 2, 3, 2, 2, 1, -2, -2, 0, -2, 2, 0, -2, 2, 1, -2, 2, 0, 2, -2, 0, 2, -2, 3, 2, -2, 0, 2, 2, 0, -2, -2, 0, -2, 2, 1, -2, -2, 3, 2, -2, 1, -2, -2, 0, 2, -2, 1, -2, -2, 3, 2, 2, 0, 2, 2, 1, -2, 2, 0, -2, -2, 0, -2, 2, 1, -2, -2, 1, -2, 2, 0, 2, -2, 3, 2, 2, 3, 2 )
-
-[sub_resource type="NavigationMesh" id=18]
+[sub_resource type="NavigationMesh" id=25]
 vertices = PoolVector3Array( 2, -2, -2, -2, 0, 2, 2, 0, 2, 2, -2, -2, -2, -2, -2, -2, 0, 2 )
 polygons = [ PoolIntArray( 0, 2, 1 ), PoolIntArray( 3, 5, 4 ) ]
+
+[sub_resource type="ConcavePolygonShape" id=17]
+data = PoolVector3Array( -2, 0, 2, 2, 0, 2, 2, 0, -2, 2, 1, -2, 2, 3, 2, -2, 3, 2, -2, 0, 2, -2, 0, -2, -2, 1, -2, 2, 0, 2, 2, 3, 2, 2, 1, -2, -2, 0, -2, 2, 0, -2, 2, 1, -2, 2, 0, 2, -2, 0, 2, -2, 3, 2, -2, 0, 2, 2, 0, -2, -2, 0, -2, 2, 1, -2, -2, 3, 2, -2, 1, -2, -2, 0, 2, -2, 1, -2, -2, 3, 2, 2, 0, 2, 2, 1, -2, 2, 0, -2, -2, 0, -2, 2, 1, -2, -2, 1, -2, 2, 0, 2, -2, 3, 2, 2, 3, 2 )
 
 [sub_resource type="ArrayMesh" id=8]
 resource_name = "Plane.005"
@@ -77,12 +77,12 @@ surfaces/0 = {
 "vertex_count": 50
 }
 
-[sub_resource type="ConcavePolygonShape" id=21]
-data = PoolVector3Array( -2, 0, 2, 2, 0, 2, 2, 0, -2, 2, 3, -2, 2, 5, 2, -2, 5, 2, -2, 0, 2, -2, 0, -2, -2, 3, -2, 2, 0, 2, 2, 5, 2, 2, 3, -2, -2, 0, -2, 2, 0, -2, 2, 3, -2, 2, 0, 2, -2, 0, 2, -2, 5, 2, -2, 0, 2, 2, 0, -2, -2, 0, -2, 2, 3, -2, -2, 5, 2, -2, 3, -2, -2, 0, 2, -2, 3, -2, -2, 5, 2, 2, 0, 2, 2, 3, -2, 2, 0, -2, -2, 0, -2, 2, 3, -2, -2, 3, -2, 2, 0, 2, -2, 5, 2, 2, 5, 2 )
-
-[sub_resource type="NavigationMesh" id=22]
+[sub_resource type="NavigationMesh" id=26]
 vertices = PoolVector3Array( 2, -2, -2, -2, 0, 2, 2, 0, 2, 2, -2, -2, -2, -2, -2, -2, 0, 2 )
 polygons = [ PoolIntArray( 0, 2, 1 ), PoolIntArray( 3, 5, 4 ) ]
+
+[sub_resource type="ConcavePolygonShape" id=21]
+data = PoolVector3Array( -2, 0, 2, 2, 0, 2, 2, 0, -2, 2, 3, -2, 2, 5, 2, -2, 5, 2, -2, 0, 2, -2, 0, -2, -2, 3, -2, 2, 0, 2, 2, 5, 2, 2, 3, -2, -2, 0, -2, 2, 0, -2, 2, 3, -2, 2, 0, 2, -2, 0, 2, -2, 5, 2, -2, 0, 2, 2, 0, -2, -2, 0, -2, 2, 3, -2, -2, 5, 2, -2, 3, -2, -2, 0, 2, -2, 3, -2, -2, 5, 2, 2, 0, 2, 2, 3, -2, 2, 0, -2, -2, 0, -2, 2, 3, -2, -2, 3, -2, 2, 0, 2, -2, 5, 2, 2, 5, 2 )
 
 [sub_resource type="ArrayMesh" id=2]
 resource_name = "Plane.009"
@@ -126,14 +126,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -1, 2 )
 mesh = SubResource( 11 )
 material/0 = null
 
+[node name="NavigationMeshInstance2" type="NavigationMeshInstance" parent="mesh2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+navmesh = SubResource( 25 )
+
 [node name="StaticBody" type="StaticBody" parent="mesh2"]
 
 [node name="CollisionShape" type="CollisionShape" parent="mesh2/StaticBody"]
 shape = SubResource( 17 )
-
-[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="mesh2"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
-navmesh = SubResource( 18 )
 
 [node name="mesh3" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -1, 2 )
@@ -154,14 +154,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -1, 2 )
 mesh = SubResource( 5 )
 material/0 = null
 
+[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="mesh4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
+navmesh = SubResource( 26 )
+
 [node name="StaticBody" type="StaticBody" parent="mesh4"]
 
 [node name="CollisionShape" type="CollisionShape" parent="mesh4/StaticBody"]
 shape = SubResource( 21 )
-
-[node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="mesh4"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
-navmesh = SubResource( 22 )
 
 [node name="mesh5" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18, -1, 2 )
